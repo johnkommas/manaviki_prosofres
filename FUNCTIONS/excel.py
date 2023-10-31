@@ -2,7 +2,7 @@
 import pandas as pd
 
 
-def export(path_to_file, df_a, df_b, df_c, df_d):
+def export(path_to_file, df_a, df_b, df_c = None, df_d = None):
     """
         Writes data from Pandas dataframes to an Excel file, and format the created Excel file.
 
@@ -26,8 +26,9 @@ def export(path_to_file, df_a, df_b, df_c, df_d):
     """
     data = [chr(i) for i in range(ord('Α'), ord('Ω') + 1)]
     with pd.ExcelWriter(path_to_file, engine='xlsxwriter') as writer:
-        df_c.to_excel(writer, sheet_name='TODAY', startcol=8, startrow=1, index=None)
-        df_d.to_excel(writer, sheet_name='TODAY', startcol=13, startrow=1, index=None)
+        # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
+        # df_c.to_excel(writer, sheet_name='TODAY', startcol=8, startrow=1, index=None)
+        # df_d.to_excel(writer, sheet_name='TODAY', startcol=13, startrow=1, index=None)
         row = 0
         for letter in data:
             df_gresco = df_a[df_a['ΕΙΔΟΣ'].str.startswith(letter)]
@@ -68,17 +69,20 @@ def export(path_to_file, df_a, df_b, df_c, df_d):
         worksheet.set_column('B:B', 1, number)
         worksheet.set_column('E:E', 1, normal)
         worksheet.set_column('F:F', 1, number)
-        worksheet.set_column('I:I', 1, normal)
-        worksheet.set_column('J:J', 1, number)
-        worksheet.set_column('K:K', 1, number)
-        worksheet.set_column('L:L', 1, percent)
-        worksheet.set_column('N:N', 1, normal)
-        worksheet.set_column('O:O', 1, number)
-        worksheet.set_column('P:P', 1, number)
-        worksheet.set_column('Q:Q', 1, percent)
 
-        worksheet.merge_range(f"I1:L1", 'GRESCO ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
-        worksheet.merge_range(f"N1:Q1", 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
+        # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
+        # worksheet.set_column('I:I', 1, normal)
+        # worksheet.set_column('J:J', 1, number)
+        # worksheet.set_column('K:K', 1, number)
+        # worksheet.set_column('L:L', 1, percent)
+        # worksheet.set_column('N:N', 1, normal)
+        # worksheet.set_column('O:O', 1, number)
+        # worksheet.set_column('P:P', 1, number)
+        # worksheet.set_column('Q:Q', 1, percent)
+
+        # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
+        # worksheet.merge_range(f"I1:L1", 'GRESCO ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
+        # worksheet.merge_range(f"N1:Q1", 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
 
         # Autofit the worksheet.
         worksheet.autofit()
