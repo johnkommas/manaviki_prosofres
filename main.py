@@ -29,10 +29,12 @@ def run():
 
     list_of_dates_gresco =['26102023', '30102023']
     new_gresco = list_of_dates_gresco[-1]
+    # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # old_gresco = list_of_dates_gresco[-2]
 
     list_of_dates_kalimera = ['26102023', '30102023']
     new_kalimera = list_of_dates_kalimera[-1]
+    # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # old_kalimera = list_of_dates_kalimera[-2]
 
     # NEW PRICES GRESKO | A. FIND FILE | B. CREATE DATAFRAME
@@ -43,12 +45,14 @@ def run():
     fb = f'{cwd}/FILES/FNV {new_kalimera}.pdf'
     kalimera_frouta = myfunc.run_prosfores_kalimera(fb)
 
+    # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # OLD PRICES GRESKO | A.FIND FILE | B.CREATE DATAFRAME | C.COMPARE WITH NEW PRICES
     gresco_price_change = None
     # fc = f'{cwd}/FILES/GRESKO {old_gresco}.xlsx'
     # gresco_old = myfunc.run_prosfores_gresko(fc)
     # gresco_price_change = myfunc.run_gresko(gresco, gresco_old)
 
+    # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # OLD PRICES KALIMERA FROUTA | A.FIND FILE | B.CREATE DATAFRAME | C.COMPARE WITH NEW PRICES
     kalimera_price_changed = None
     # fd = f'{cwd}/FILES/FNV {old_kalimera}.pdf'
