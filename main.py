@@ -68,6 +68,5 @@ def run():
     os.system(f'open {path_to_file}')
 
 
-
 if __name__ == "__main__":
     run()
