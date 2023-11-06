@@ -1,6 +1,6 @@
 import os
 import FUNCTIONS as myfunc
-
+from datetime import datetime
 
 def run():
     """
@@ -21,18 +21,18 @@ def run():
     - Creates and writes to an Excel file.
     - Sends an email with an attachment.
     """
-
+    today = datetime.now().strftime('%d%m%y')
     cwd = os.getcwd()
-    file_name = 'manaviki.xlsx'
+    file_name = f'manaviki_{today}.xlsx'
     path_to_file = f'{cwd}/OUTPUT/{file_name}'
     html_file = f'{cwd}/HTML/body.html'
 
-    list_of_dates_gresco =['26102023', '30102023']
+    list_of_dates_gresco =['26102023', '30102023', '03112023', '20231106']
     new_gresco = list_of_dates_gresco[-1]
     # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # old_gresco = list_of_dates_gresco[-2]
 
-    list_of_dates_kalimera = ['26102023', '30102023']
+    list_of_dates_kalimera = ['26102023', '30102023', '03112023']
     new_kalimera = list_of_dates_kalimera[-1]
     # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # old_kalimera = list_of_dates_kalimera[-2]
@@ -60,10 +60,13 @@ def run():
     # kalimera_price_changed = myfunc.run_kalimera(kalimera_frouta, kalimera_frouta_old)
 
     # CREATE EXCEL FUNCTION
-    myfunc.export(f'{cwd}/OUTPUT/manaviki.xlsx', gresco, kalimera_frouta, gresco_price_change, kalimera_price_changed)
+    myfunc.export(path_to_file, gresco, kalimera_frouta, gresco_price_change, kalimera_price_changed)
 
     # SEND E-MAIL FUNCTION
-    myfunc.run(path_to_file, file_name, html_file)
+    # myfunc.run(path_to_file, file_name, html_file)
+
+    os.system(f'open {path_to_file}')
+
 
 
 if __name__ == "__main__":
