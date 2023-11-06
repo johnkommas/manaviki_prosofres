@@ -5,6 +5,8 @@ import os
 load_dotenv()
 
 
+# Επόμενο 5
+
 def run(path_to_file, file_name, html_file):
     """
         Prepares and sends an email. The email server and recipients are specified using
@@ -23,11 +25,11 @@ def run(path_to_file, file_name, html_file):
     """
 
     mail_lst = [os.getenv("main_mail"),
-                # os.getenv("store_mail")
+                os.getenv("store_mail")
                 ]
     mail_names = [os.getenv("subject"),
-                  # os.getenv("subject"),
-                ]
+                  os.getenv("subject"),
+                  ]
 
     # -------------------- OPEN HTML FILE FOR THE BODY MAIL --------------------
     with open(html_file, 'r') as html_file:
