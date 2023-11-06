@@ -82,16 +82,16 @@ def run_prosfores_kalimera(file):
     df = tabula.read_pdf(file, pages='all')[0]
 
     df_a = df[['ΠΡΟΪΟΝ', '*ΤΙΜΗ (€) / Μ.Μ.']]
-    columns = {'ΠΡΟΪΟΝ': 'ΕΙΔΟΣ', '*ΤΙΜΗ (€) / Μ.Μ.': 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'}
+    columns = {'ΠΡΟΪΟΝ': 'ΕΙΔΟΣ', '*ΤΙΜΗ (€) / Μ.Μ.': 'ΚΑΛΗΜΕΡΑ'}
     df_a = df_a.rename(columns=columns)
 
     df_b = df[['ΠΡΟΪΟΝ.1', '*ΤΙΜΗ (€) / Μ.Μ..1']]
-    columns = {'ΠΡΟΪΟΝ.1': 'ΕΙΔΟΣ', '*ΤΙΜΗ (€) / Μ.Μ..1': 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'}
+    columns = {'ΠΡΟΪΟΝ.1': 'ΕΙΔΟΣ', '*ΤΙΜΗ (€) / Μ.Μ..1': 'ΚΑΛΗΜΕΡΑ'}
     df_b = df_b.rename(columns=columns)
 
     df = pd.concat([df_a, df_b], ignore_index=True)
-    df['ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'] = df['ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'].str.replace(',', '.')
-    df = df[pd.to_numeric(df['ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'], errors='coerce').notna()].sort_values(by='ΕΙΔΟΣ').reset_index(drop=True)
-    df['ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'] = df['ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'].astype(float)
-    df = df[df['ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ'] > 0]
+    df['ΚΑΛΗΜΕΡΑ'] = df['ΚΑΛΗΜΕΡΑ'].str.replace(',', '.')
+    df = df[pd.to_numeric(df['ΚΑΛΗΜΕΡΑ'], errors='coerce').notna()].sort_values(by='ΕΙΔΟΣ').reset_index(drop=True)
+    df['ΚΑΛΗΜΕΡΑ'] = df['ΚΑΛΗΜΕΡΑ'].astype(float)
+    df = df[df['ΚΑΛΗΜΕΡΑ'] > 0]
     return df
