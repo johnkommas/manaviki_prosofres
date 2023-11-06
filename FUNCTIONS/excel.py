@@ -65,10 +65,12 @@ def export(path_to_file, df_a, df_b, df_c = None, df_d = None):
             'bold': True,
             "font_name": "Avenir Next"})
 
-        worksheet.set_column('A:A', 1, normal)
-        worksheet.set_column('B:B', 1, number)
-        worksheet.set_column('E:E', 1, normal)
-        worksheet.set_column('F:F', 1, number)
+        worksheet.set_column('A:A', 41, normal)
+        worksheet.set_column('B:B', 8, number)
+        worksheet.set_column('C:C', 1, normal)
+        worksheet.set_column('D:D', 1, normal)
+        worksheet.set_column('E:E', 45, normal)
+        worksheet.set_column('F:F', 9, number)
 
         # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
         # worksheet.set_column('I:I', 1, normal)
@@ -85,4 +87,6 @@ def export(path_to_file, df_a, df_b, df_c = None, df_d = None):
         # worksheet.merge_range(f"N1:Q1", 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
 
         # Autofit the worksheet.
-        worksheet.autofit()
+        # worksheet.autofit()
+        # worksheet.set_column('C:C', 1, normal)
+        # worksheet.set_column('D:D', 1, normal)
