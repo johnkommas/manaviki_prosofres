@@ -32,7 +32,7 @@ def run():
     # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # old_gresco = list_of_dates_gresco[-2]
 
-    list_of_dates_kalimera = ['26102023', '30102023', '03112023']
+    list_of_dates_kalimera = ['26102023', '30102023', '03112023', '231107']
     new_kalimera = list_of_dates_kalimera[-1]
     # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # old_kalimera = list_of_dates_kalimera[-2]
@@ -63,7 +63,7 @@ def run():
     myfunc.export(path_to_file, gresco, kalimera_frouta, gresco_price_change, kalimera_price_changed)
 
     # SEND E-MAIL FUNCTION
-    # myfunc.run(path_to_file, file_name, html_file)
+    myfunc.run(path_to_file, file_name, html_file)
 
     os.system(f'open {path_to_file}')
 
