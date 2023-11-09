@@ -45,7 +45,7 @@ def run_kalimera(new, old):
             The merge operation on 'ΕΙΔΟΣ' column signifies it should be used as a key to match rows between the two dataframes.
     """
     df = pd.merge(new, old, how='left', on='ΕΙΔΟΣ')
-    rename = {'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ_x': 'NEW PRICE', 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ_y': 'OLD PRICE'}
+    rename = {'ΚΑΛΗΜΕΡΑ_x': 'NEW PRICE', 'ΚΑΛΗΜΕΡΑ_y': 'OLD PRICE'}
     df.rename(columns=rename, inplace=True)
     df['Percent Change'] = ((df['NEW PRICE'] - df['OLD PRICE']) / df['OLD PRICE'])
     df = df[df['Percent Change'] < 0]
