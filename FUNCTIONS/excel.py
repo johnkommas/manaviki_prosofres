@@ -26,9 +26,8 @@ def export(path_to_file, df_a, df_b, df_c = None, df_d = None):
     """
     data = [chr(i) for i in range(ord('Α'), ord('Ω') + 1)]
     with pd.ExcelWriter(path_to_file, engine='xlsxwriter') as writer:
-        # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
-        # df_c.to_excel(writer, sheet_name='TODAY', startcol=8, startrow=1, index=None)
-        # df_d.to_excel(writer, sheet_name='TODAY', startcol=13, startrow=1, index=None)
+        df_c.to_excel(writer, sheet_name='CHANGES', startcol=0, startrow=1, index=None)
+        df_d.to_excel(writer, sheet_name='CHANGES', startcol=5, startrow=1, index=None)
         row = 0
         for letter in data:
             df_gresco = df_a[df_a['ΕΙΔΟΣ'].str.startswith(letter)]
@@ -40,6 +39,7 @@ def export(path_to_file, df_a, df_b, df_c = None, df_d = None):
         # Φτιάχνω το EXCEL για να είναι ευανάγνωστο
         workbook = writer.book
         worksheet = writer.sheets['TODAY']
+        worksheet_2 = writer.sheets['CHANGES']
         number = workbook.add_format({
             'num_format': '€#,##0.00',
             'align': 'left',
@@ -72,21 +72,21 @@ def export(path_to_file, df_a, df_b, df_c = None, df_d = None):
         worksheet.set_column('E:E', 45, normal)
         worksheet.set_column('F:F', 9, number)
 
-        # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
-        # worksheet.set_column('I:I', 1, normal)
-        # worksheet.set_column('J:J', 1, number)
-        # worksheet.set_column('K:K', 1, number)
-        # worksheet.set_column('L:L', 1, percent)
-        # worksheet.set_column('N:N', 1, normal)
-        # worksheet.set_column('O:O', 1, number)
-        # worksheet.set_column('P:P', 1, number)
-        # worksheet.set_column('Q:Q', 1, percent)
+        # ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
+        worksheet_2.set_column('A:A', 1, normal)
+        worksheet_2.set_column('B:B', 1, number)
+        worksheet_2.set_column('C:C', 1, number)
+        worksheet_2.set_column('D:D', 1, percent)
+        worksheet_2.set_column('F:F', 1, normal)
+        worksheet_2.set_column('G:G', 1, number)
+        worksheet_2.set_column('H:H', 1, number)
+        worksheet_2.set_column('I:I', 1, percent)
 
-        # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
-        # worksheet.merge_range(f"I1:L1", 'GRESCO ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
-        # worksheet.merge_range(f"N1:Q1", 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
+        # ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
+        worksheet_2.merge_range(f"A1:D1", 'GRESCO ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
+        worksheet_2.merge_range(f"F1:I1", 'ΚΑΛΗΜΕΡΑ ΦΡΟΥΤΑ ΠΤΩΣΗ ΤΙΜΩΝ', normal_bold)
 
         # Autofit the worksheet.
-        # worksheet.autofit()
+        worksheet_2.autofit()
         # worksheet.set_column('C:C', 1, normal)
         # worksheet.set_column('D:D', 1, normal)
