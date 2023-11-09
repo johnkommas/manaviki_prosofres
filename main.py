@@ -2,6 +2,7 @@ import os
 import FUNCTIONS as myfunc
 from datetime import datetime
 
+
 def run():
     """
     Main function to process price data and send out emails.
@@ -27,15 +28,14 @@ def run():
     path_to_file = f'{cwd}/OUTPUT/{file_name}'
     html_file = f'{cwd}/HTML/body.html'
 
-    list_of_dates_gresco =['26102023', '30102023', '03112023', '20231106']
+    list_of_dates_gresco = ['26102023', '30102023', '03112023', '20231106', '231109']
     new_gresco = list_of_dates_gresco[-1]
-    # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
-    # old_gresco = list_of_dates_gresco[-2]
+    old_gresco = list_of_dates_gresco[-2]
 
     list_of_dates_kalimera = ['26102023', '30102023', '03112023', '231107']
     new_kalimera = list_of_dates_kalimera[-1]
     # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
-    # old_kalimera = list_of_dates_kalimera[-2]
+    old_kalimera = list_of_dates_kalimera[-2]
 
     # NEW PRICES GRESKO | A. FIND FILE | B. CREATE DATAFRAME
     fa = f'{cwd}/FILES/GRESKO {new_gresco}.xlsx'
@@ -45,25 +45,25 @@ def run():
     fb = f'{cwd}/FILES/FNV {new_kalimera}.pdf'
     kalimera_frouta = myfunc.run_prosfores_kalimera(fb)
 
-    # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # OLD PRICES GRESKO | A.FIND FILE | B.CREATE DATAFRAME | C.COMPARE WITH NEW PRICES
     gresco_price_change = None
-    # fc = f'{cwd}/FILES/GRESKO {old_gresco}.xlsx'
-    # gresco_old = myfunc.run_prosfores_gresko(fc)
-    # gresco_price_change = myfunc.run_gresko(gresco, gresco_old)
+    fc = f'{cwd}/FILES/GRESKO {old_gresco}.xlsx'
+    gresco_old = myfunc.run_prosfores_gresko(fc)
+    gresco_price_change = myfunc.run_gresko(gresco, gresco_old)
+    # print(gresco_price_change)
 
-    # ΔΕΝ ΜΑΣ ΕΝΔΙΑΦΕΡΟΥΝ ΟΙ ΠΤΩΣΕΙΣ ΤΙΜΩΝ
     # OLD PRICES KALIMERA FROUTA | A.FIND FILE | B.CREATE DATAFRAME | C.COMPARE WITH NEW PRICES
     kalimera_price_changed = None
-    # fd = f'{cwd}/FILES/FNV {old_kalimera}.pdf'
-    # kalimera_frouta_old = myfunc.run_prosfores_kalimera(fd)
-    # kalimera_price_changed = myfunc.run_kalimera(kalimera_frouta, kalimera_frouta_old)
+    fd = f'{cwd}/FILES/FNV {old_kalimera}.pdf'
+    kalimera_frouta_old = myfunc.run_prosfores_kalimera(fd)
+    kalimera_price_changed = myfunc.run_kalimera(kalimera_frouta, kalimera_frouta_old)
+    # print(kalimera_price_changed)
 
     # CREATE EXCEL FUNCTION
     myfunc.export(path_to_file, gresco, kalimera_frouta, gresco_price_change, kalimera_price_changed)
 
     # SEND E-MAIL FUNCTION
-    myfunc.run(path_to_file, file_name, html_file)
+    # myfunc.run(path_to_file, file_name, html_file)
 
     os.system(f'open {path_to_file}')
 
